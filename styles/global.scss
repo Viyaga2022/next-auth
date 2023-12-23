@@ -1,0 +1,91 @@
+@import "./variables.scss";
+@import "./responsive.scss";
+
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  scrollbar-color: var(--main-color) var(--black);
+  scrollbar-width: thin;
+}
+
+html {
+  font-size: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+*::selection {
+  background-color: white;
+  color: black;
+}
+
+*::-webkit-scrollbar {
+  height: .31rem;
+  width: .625rem;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, $main-bg, $soft-bg, teal);
+}
+
+body {
+  color: $main-color;
+}
+
+section {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 2rem;
+}
+
+.btn {
+  display: block;
+  border-radius: .31rem;
+  padding: .8rem 1.87rem;
+  background: $main-bg;
+  color: $main-color;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  font-size: 1.125rem;
+  margin-top: .625 rem;
+  transition: .2s linear;
+}
+
+.btn:hover {
+  // box-shadow: 0 6px 12px teal;
+  box-shadow: 0 12px 24px hsla(219, 97%, 54%, .2);
+}
+
+.heading {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 4.375rem;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2.5rem;
+
+  @include lg {
+    font-size: 3.125rem;
+    margin-bottom: 1.875rem;
+  }
+
+  @include md {
+    font-size: 1.875rem;
+  }
+
+  @include sm {
+    font-size: 1.56rem;
+  }
+}
