@@ -4,9 +4,10 @@ import React, { useState } from 'react'
 import './login-register.scss'
 import { registerUser, loginUser } from '@/lib/functions'
 import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
 
 const LoginRegister = () => {
-
+	const router = useRouter()
 	const onLogin = async (formData) => {
 		const { email, password } = Object.fromEntries(formData)
 		if (!email || !password) {
@@ -15,9 +16,9 @@ const LoginRegister = () => {
 		const res = await loginUser(formData)
 		if (res?.error) {
 			toast.error(res.error)
-			res.error = ''
 		} else {
-			toast.success("login successfull")
+			toast.success(res?.success)
+			router.push('/dashboard')
 		}
 	}
 
@@ -35,9 +36,8 @@ const LoginRegister = () => {
 
 		if (register?.error) {
 			toast.error(register.error)
-			register.error = ''
 		} else {
-			toast.success("registration Successfull")
+			toast.success(register?.success)
 			setTimeout(() => {
 				changeLogin()
 			}, 1300)

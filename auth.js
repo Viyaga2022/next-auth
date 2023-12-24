@@ -4,9 +4,11 @@ import { authConfig } from './auth.config';
 import { z } from 'zod';
 import bcrypt from 'bcrypt';
 import { User } from './lib/models';
+import { connectDB } from './lib/functions';
 
 async function getUser(email) {
     try {
+        await connectDB()
         const user = await User.findOne({ email });
         return user;
     } catch (error) {
@@ -24,7 +26,7 @@ export const { auth, signIn, signOut } = NextAuth({
                     .object({ email: z.string().email(), password: z.string().min(4) })
                     .safeParse(credentials);
 
-                if (parsedCredentials.success) {
+                if (parsedCredentials?.success) {
                     const { email, password } = parsedCredentials.data;
                     console.log({ auth: { email, password } });
                     const user = await getUser(email);
